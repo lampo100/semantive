@@ -42,7 +42,7 @@ Proces tworzenia nowego zadania pobrania danych wygląda następująco:
 1. Użytkownik zleca stworzenie nowego zadania podając adres strony, to czy ma być pobierany tekst czy obrazy oraz opcjonalnie czy pobrane dane mają jakiś tag(np. "pies", "kot", "sport").
 2. Tworzone jest nowe zadanie o podanych parametrach i przekazany jest adres pod którym użytkownik może sprawdzać jego status.
 
-Dane pobrane ze stron dostępne są pod odpowiednimi adresami. Mogą być one przefiltrowane używając adresu strony z której były pobrane, lub też z pomocą opcjonalnego tagu. Dodanie go wydaje mi się to sensownym dodatkiem, ponieważ jeżeli dane te mają być używane przy uczeniu maszynowym, to bardziej niż to z jakiej strony pobrane były zdjęcia/tekst, przyda nam się informacja o tym do jakiej kategorii należą. 
+Dane pobrane ze stron dostępne są pod odpowiednimi adresami. Mogą być one przefiltrowane używając adresu strony z której były pobrane, lub też z pomocą opcjonalnego tagu. Dodanie go wydaje mi się sensownym dodatkiem, ponieważ przy uczeniu maszynowym bardziej niż to z jakiej strony pobrane były zdjęcia/tekst, przyda nam się informacja o tym do jakiej kategorii należą. 
 Nie chciałem jednakże pozbawiać użytkownika możliwości sprawdzania danych z określonej strony, dlatego też dostępne są obie opcje.
 
 Możliwa jest także próba automatycznego kategoryzowania obrazków, np. dzięki atrybutom `alt`. Musimy się liczyć z tym, że nie wszystkie obrazki będo go miały lub że będą one błędnie oznaczone.
@@ -93,11 +93,11 @@ Pod adresem `/api/images/{id}` dostępne są metadane przechowywanego obrazu o p
 Rozdzielenie to wydaje mi się korzystne ze względu na to że jesteśmy w stanie przesyłać oddzielnie informacje o obrazku a oddzielnie sam obrazek. 
 Dla zachowania konwencji teksty dostępne są w identyczny sposób.
 
-W prototypie do przechowywania używam bazy sqlite.
+W prototypie do przechowywania użyłbym bazy danych sqlite.
 
 ### Asynchroniczność zadań
 
-Jako że pobieranie ze strony obrazów może trwać bardzo długo zadania pobrania danych powinno być obsługiwane przez zupełnie inny proces/wątek niż ten który obsługuje mikroserwis inaczej mogłoby dojść do zablokowania wszystkich wątków/procesów i tym samym zablokowanie mikroserwisu.
+Jako że pobieranie ze strony obrazów może trwać bardzo długo, zadania powinny być obsługiwane przez zupełnie inny proces/wątek niż ten który obsługuje mikroserwis. Inaczej mogłoby dojść do zablokowania wszystkich wątków/procesów i tym samym zablokowanie mikroserwisu.
 
 Proponowanym przeze mnie rozwiązaniem jest użycie `Celery` (http://www.celeryproject.org/) w celu postawienia serwera roboczego który zajmować się będzie wykonywaniem zleconych zadań i pobieraniem danych.
 Jest to oczywiście jedno z wielu możliwych rozwiązań.
