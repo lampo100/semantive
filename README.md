@@ -112,7 +112,7 @@ Ponadto jako serwer HTTP postanowiłem użyć `gunicorn` z uwagi na jego prostot
 
 Konfigurację serwisu i automatyzację uruchamiania go postanowiłem wprowadzić używając `venv` oraz programu `make`.
 
-Prawdopodobnie lepszą opcją byłoby użycie 
+Prawdopodobnie lepszą opcją byłoby użycie Dockera, jednakże z uwagi na mój brak doświadczenia pracy z nim, postanowiłem użyć tutaj nieco prostszego rozwiązania.
 
 ### Testy
 
