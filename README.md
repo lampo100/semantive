@@ -124,7 +124,7 @@ Do testowania postanowiłem wybrać znajomy mi pakiet `unittest`. Testy odpalane
 Przy szukaniu odpowiedniego rozwiązania tego problemu natknąłem się na framework `Scrapy`. Szybkie przeczytanie wstępu dokumentacji pozwoliło mi stwierdzić że byłby on zdecydowanie wystarczający przy problemie pobierania tekstu i statycznych zasobów.
 Jeżeli preferowane byłoby "lżejsze" rozwiązanie, to alternatywą może być użycie `Beautiful Soup` jednakże użycie tej biblioteki wymagałoby minimalnie większej ilości kodu niż użycie Scrapiego.
 
-Ogólnie wydaje mi się że efektywny data scraping to dosyć złożony problem i wymagałby głębszego przemyślenia i dopasowania rozwiązania do konkretnych stron.
+Jako że efektywny data scraping to dosyć złożony problem to ten aspekt implementacji rozwiązania wymagałby głębszego przemyślenia i dopasowania metod do konkretnych stron.
 
 
 ## Podsumowanie
