@@ -105,7 +105,7 @@ def get_text_by_id(id):
     """
     return "Here is your text with id {}".format(id)
 
-@flask_app.route('/api/textx/<int:id>/content')
+@flask_app.route('/api/texts/<int:id>/content')
 def get_text_content(id):
     """
     Get content of an image with given id
