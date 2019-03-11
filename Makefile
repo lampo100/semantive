@@ -3,7 +3,7 @@ HOST=localhost
 PORT=5000
 export VIRTUAL_ENV := $(abspath ${VENV})
 export PATH := ${VIRTUAL_ENV}/bin:${PATH}
-.PHONY: python-reqs setup serve
+.PHONY: python-reqs setup serve test
 
 help:
 	@echo 'Makefile for a webservice                                                      '
@@ -18,11 +18,11 @@ ${VENV}:
 python-reqs: requirements.txt | ${VENV}
 	pip install --upgrade -r requirements.txt
 
-setup: ${VENV} python-reqs
+setup: ${VENV} python-reqs test
 
 serve:
 	@gunicorn -b ${HOST}:${PORT} app:app
 
 test:
-    @python3 -m unittest tests/test_app.py
+	@python3 -m unittest tests/test_app.py
 
