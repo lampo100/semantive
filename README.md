@@ -131,6 +131,6 @@ Jako że efektywny data scraping to dosyć złożony problem to ten aspekt imple
 
 Serwis stworzony w wyżej opisany sposób powinien dosyć dobrze obsługiwać dużą ilość zapytań. Poszczególne komponenty systemu są odpowiednio rozdzielone i niezależne od siebie, dlatego też łatwo byłoby wprowadzić poprawki/zmiany.
 
-Aktualnie wydaje mi się że wraz ze wzrostem danych przydałaby się lepsza ich organizacja, niż samo filtrowanie po "opcjonalnym" tagu albo po stronie z której pochodzą. Najlepiej byłoby użyć odpowiednio zaprojektowanej
+Aktualnie wydaje mi się że wraz ze wzrostem danych przydałaby się lepsza ich organizacja, niż samo filtrowanie po "opcjonalnym" tagu albo po stronie z której pochodzą.
 
 W przypadku rozszerzenia możliwości serwisu, dobrą decyzją byłoby zapewne użycie odpowiednio zaprojektowanej bazy danych na oddzielnym serwerze. 
