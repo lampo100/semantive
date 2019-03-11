@@ -1,4 +1,6 @@
 VENV = .venv
+HOST=localhost
+PORT=5000
 export VIRTUAL_ENV := $(abspath ${VENV})
 export PATH := ${VIRTUAL_ENV}/bin:${PATH}
 .PHONY: python-reqs setup serve
@@ -19,5 +21,5 @@ python-reqs: requirements.txt | ${VENV}
 setup: ${VENV} python-reqs
 
 serve:
-	@gunicorn -b 127.0.0.1:8000 app:app
+	@gunicorn -b ${HOST}:${PORT} app:app
 
