@@ -1,10 +1,6 @@
 from flask import Flask, Response
 
 app = Flask(__name__)
-app.config.update(
-    CELERY_BROKER_URL='redis://localhost:6379',
-    CELERY_RESULT_BACKEND='redis://localhost:6379'
-)
 
 @app.route('/api/scraping-tasks/', methods=['GET'])
 def get_scraping_tasks():
