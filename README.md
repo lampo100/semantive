@@ -19,6 +19,11 @@ Po skonfigurowaniu środowiska serwer może zostać uruchomiony poprzez wywołan
 `make serve [HOST=<adres>] [PORT=<port>]` 
 Domyślnie serwis dostępny jest pod adresem 127.0.0.1:5000
 
+## Testowanie
+
+W celu uruchomienia testów należy wywołać 
+`make test`
+
 ## Design API
 
 Opis API dostępny jest pod adresem 
