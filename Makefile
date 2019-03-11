@@ -23,3 +23,6 @@ setup: ${VENV} python-reqs
 serve:
 	@gunicorn -b ${HOST}:${PORT} app:app
 
+test:
+    @python3 -m unittest tests/test_app.py
+
