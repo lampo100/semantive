@@ -9,8 +9,9 @@ help:
 	@echo 'Makefile for a webservice                                                      '
 	@echo '                                                                               '
 	@echo 'Usage:                                                                         '
-	@echo '   make setup                             setup project                        '
+	@echo '   make setup                            setup project                         '
 	@echo '   make serve [HOST=127.0.0.1 PORT=8000] serve service at http://127.0.0.1:8000'
+	@echo '   make test                             run tests                             '
 
 ${VENV}:
 	python3 -m venv $@
