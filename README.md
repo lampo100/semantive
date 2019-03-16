@@ -6,23 +6,18 @@ Poniższe instrukcje służą przygotowaniu środowiska pod aplikację oraz uruc
 
 ## Wymagania
 
-Wymagany jest python w wersji >=3.3 oraz dowolny message broker (przykładowo RabbitMQ)
+Do uruchomienia serwisu potrzebny jest docker oraz docker-compose
 
 ## Setup
 
 1. Sklonuj repozytorium `git clone https://github.com/lampo100/semantive.git`
-2. Wywołaj `make setup` w głównym folderze projektu
-
-## Uruchamianie serwera
-
-Po skonfigurowaniu środowiska serwer może zostać uruchomiony poprzez wywołanie. 
-`make serve [HOST=<adres>] [PORT=<port>]` 
+2. Przejdź do sklonowanego folderu `cd semantive`
+2. Wywołaj `sudo docker-compose up build` w głównym folderze projektu
 Domyślnie serwis dostępny jest pod adresem 127.0.0.1:5000
 
 ## Testowanie
 
-W celu uruchomienia testów należy wywołać 
-`make test`
+Testy uruchamiane są automatycznie przed postawieniem środowiska. Możliwe jest także wywołanie ich ręcznie z użyciem komendy `pytest`
 
 ## Design API
 
@@ -100,7 +95,7 @@ W prototypie do przechowywania użyłbym bazy danych sqlite.
 Jako że pobieranie ze strony obrazów może trwać bardzo długo, zadania powinny być obsługiwane przez zupełnie inny proces/wątek niż ten który obsługuje mikroserwis. Inaczej mogłoby dojść do zablokowania wszystkich wątków/procesów i tym samym zablokowanie mikroserwisu.
 
 Proponowanym przeze mnie rozwiązaniem jest użycie `Celery` (http://www.celeryproject.org/) w celu postawienia serwera roboczego który zajmować się będzie wykonywaniem zleconych zadań i pobieraniem danych.
-Jest to oczywiście jedno z wielu możliwych rozwiązań.
+Aktualnie jako message broker w celu komunikacji z workerem używany jest redis.
 
 ### Implementacja mikroserwisu
 
@@ -110,27 +105,24 @@ Ponadto jako serwer HTTP postanowiłem użyć `gunicorn` z uwagi na jego prostot
 
 ### Konfiguracja serwisu
 
-Konfigurację serwisu i automatyzację uruchamiania go postanowiłem wprowadzić używając `venv` oraz programu `make`.
-
-Prawdopodobnie lepszą opcją byłoby użycie Dockera, jednakże z uwagi na mój brak doświadczenia pracy z nim, postanowiłem użyć tutaj nieco prostszego rozwiązania.
+Wstępnie konfigurację serwisu i automatyzację uruchamiania go postanowiłem wprowadzić używając `venv` oraz programu `make`.
+Pod koniec stwierdziłem jednakże, że lepszym rozwiązaniem może być jednakże użycie dockera, dlatego też w wersji końcowej używam właśnie tego rozwiązania.
 
 ### Testy
 
-Do testowania postanowiłem wybrać znajomy mi pakiet `unittest`. Testy odpalane są z użyciem polecenia `make test`
-
+Wstępnie do testów użyłem znajomego mi pakietu unittest, jednakże po wstępnym zapoznaniu się z pytest, doszedłem do wniosku, że jest on zdecydowanie lepszy ze względu na łatwość modularyzacji testów i możliwości ponownego użycia ich.
 
 ### Data scraping
 
-Przy szukaniu odpowiedniego rozwiązania tego problemu natknąłem się na framework `Scrapy`. Szybkie przeczytanie wstępu dokumentacji pozwoliło mi stwierdzić że byłby on zdecydowanie wystarczający przy problemie pobierania tekstu i statycznych zasobów.
-Jeżeli preferowane byłoby "lżejsze" rozwiązanie, to alternatywą może być użycie `Beautiful Soup` jednakże użycie tej biblioteki wymagałoby minimalnie większej ilości kodu niż użycie Scrapiego.
-
-Jako że efektywny data scraping to dosyć złożony problem to ten aspekt implementacji rozwiązania wymagałby głębszego przemyślenia i dopasowania metod do konkretnych stron.
-
+Do data scrapingu postanowiłem użyć lekkiego pakietu BeautifulSoup4. Aktualnie zaimplementowany jest dosyć prosty sposób scrapowania. W przypadku tekstu usuwane są wszystkie tagi html a powstałe teksty sklejane są ze sobą w jeden dokument.
+W przypadku obrazków znajdywane są wszystkie tagi `img` i z atrybutu `src` wyciągane są wszystkie adresy. Następnie w adresie znalezione zostanie jedno z szukanych rozszerzeń obrazów (np. png) obraz jest pobierany oraz zapisywany do bazy danych.
 
 ## Podsumowanie
 
 Serwis stworzony w wyżej opisany sposób powinien dosyć dobrze obsługiwać dużą ilość zapytań. Poszczególne komponenty systemu są odpowiednio rozdzielone i niezależne od siebie, dlatego też łatwo byłoby wprowadzić poprawki/zmiany.
 
 Aktualnie wydaje mi się że wraz ze wzrostem danych przydałaby się lepsza ich organizacja, niż samo filtrowanie po "opcjonalnym" tagu albo po stronie z której pochodzą.
+
+Dodatkowym mankamentem jes
 
 W przypadku rozszerzenia możliwości serwisu, dobrą decyzją byłoby zapewne użycie odpowiednio zaprojektowanej bazy danych na oddzielnym serwerze. 
