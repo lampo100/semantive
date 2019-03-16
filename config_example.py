@@ -1,12 +1,11 @@
 class FlaskConfig:
     DEBUG=True
     ENV='development'
-    SERVER_NAME="127.0.0.1:5000"
-    TEST_VALUE=44
+    SERVER_NAME="127.0.0.1:8000"
     DATABASE='./database.db'
 
 class CeleryConfif:
-    broker_url = 'amqp://localhost'
+    broker_url = 'redis://redis:6379/0'
     result_backend = 'db+sqlite:///database.db'
     task_serializer = 'json'
     worker_disable_rate_limits = True

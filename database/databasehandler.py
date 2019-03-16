@@ -11,7 +11,8 @@ class DatabaseHandler:
     def initialize_db(self):
         db = self.__get_db()
         with open('database/schema.sql', 'r') as schema:
-            db.cursor().execute(schema.read())
+            for command in schema.read().split(';'):
+                db.cursor().execute(command)
         db.commit()
 
     def __get_db(self):

@@ -6,7 +6,7 @@ Poniższe instrukcje służą przygotowaniu środowiska pod aplikację oraz uruc
 
 ## Wymagania
 
-Wymagany jest python w wersji >=3.3
+Wymagany jest python w wersji >=3.3 oraz dowolny message broker (przykładowo RabbitMQ)
 
 ## Setup
 
