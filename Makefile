@@ -1,6 +1,7 @@
 VENV = .venv
 HOST=localhost
 PORT=5000
+FLASK_CONFIG=config.example.cfg
 export VIRTUAL_ENV := $(abspath ${VENV})
 export PATH := ${VIRTUAL_ENV}/bin:${PATH}
 .PHONY: python-reqs setup serve test
@@ -26,4 +27,9 @@ serve:
 
 test:
 	@python3 -m unittest tests/test_app.py
+
+run_celery:
+    @celery -A celery_run worker -l info
+
+
 
