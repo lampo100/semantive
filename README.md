@@ -123,6 +123,4 @@ Serwis stworzony w wyżej opisany sposób powinien dosyć dobrze obsługiwać du
 
 Aktualnie wydaje mi się że wraz ze wzrostem danych przydałaby się lepsza ich organizacja, niż samo filtrowanie po "opcjonalnym" tagu albo po stronie z której pochodzą.
 
-Dodatkowym mankamentem jes
-
 W przypadku rozszerzenia możliwości serwisu, dobrą decyzją byłoby zapewne użycie odpowiednio zaprojektowanej bazy danych na oddzielnym serwerze. 
