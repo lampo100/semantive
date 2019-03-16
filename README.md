@@ -17,7 +17,7 @@ Domyślnie serwis dostępny jest pod adresem 127.0.0.1:5000
 
 ## Testowanie
 
-Testy uruchamiane są automatycznie przed postawieniem środowiska. Możliwe jest także wywołanie ich ręcznie z użyciem komendy `pytest`
+Testy uruchamiane są automatycznie przed postawieniem środowiska. Możliwe jest także wywołanie ich ręcznie z użyciem komendy `python -m pytest`
 
 ## Design API
 
