@@ -40,14 +40,17 @@ def create_scraping_task():
     get_scraper().create_scraping_task(url=url, data_type=data_type, tag=tag)
     return 'OK'
 
-@app.route('/api/scraping-tasks/<string:uuid>/', methods=['GET'])
+@app.route('/api/scraping-tasks/<string:uuid>', methods=['GET'])
 def get_scraping_task_by_id(uuid):
     """
     Get information about scraping task with given uuid
     :param id: uuid of the task to return
     :return: information about given task
     """
-    return jsonify(get_connector().get_task(uuid=uuid))
+    data = get_connector().get_task(uuid=uuid)
+    if not data:
+        return 'Task with given id does not exist', 404
+    return jsonify(data)
 
 @app.route('/api/images/', methods=['GET'])
 def get_images():
@@ -67,7 +70,10 @@ def get_image_by_id(id):
     :param id: id of wanted image resource
     :return:
     """
-    return jsonify(get_connector().get_image(id=id))
+    data = get_connector().get_image(id=id)
+    if not data:
+        return 'Image with given id does not exist', 404
+    return jsonify(data)
 
 @app.route('/api/images/<int:id>/', methods=['DELETE'])
 def delete_image(id):

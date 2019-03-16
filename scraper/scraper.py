@@ -1,6 +1,5 @@
 from celery_run import app
 from database.databasehandler import DatabaseHandler
-import time
 from bs4 import BeautifulSoup
 import requests
 import re
@@ -59,7 +58,6 @@ def download_images(url_list, tag):
     Iterate over list of urls and if valid fetch it and save in the database
     :return:
     """
-    time.sleep(7)
     for url in url_list:
         try:
             if urlparse(url).scheme and urlparse(url).netloc:
